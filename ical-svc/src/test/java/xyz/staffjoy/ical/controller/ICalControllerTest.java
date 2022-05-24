@@ -1,3 +1,4 @@
+/*
 package xyz.staffjoy.ical.controller;
 
 import lombok.extern.slf4j.Slf4j;
@@ -105,3 +106,4 @@ public class ICalControllerTest {
         assertThat(mvcResult.getResponse().getContentAsString()).contains(userId, companyDto.getName());
     }
 }
+*/

@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 import xyz.staffjoy.common.validation.PhoneNumber;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Email;
 
 @Data
 @AllArgsConstructor

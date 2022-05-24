@@ -1,12 +1,13 @@
 package xyz.staffjoy.common.config;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.validation.constraints.NotBlank;
+//import jakarta.validation.constraintsNotBlank;
 
 @ConfigurationProperties(prefix="staffjoy.common")
 @Data

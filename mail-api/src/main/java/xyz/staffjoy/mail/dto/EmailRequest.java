@@ -1,10 +1,11 @@
 package xyz.staffjoy.mail.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+//import jakarta.validation.constraints.NotBlank;
 
 @Data
 @Builder

@@ -13,9 +13,10 @@
  
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
-        <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
-        <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <java.version>17</java.version>
+        <spring.boot.version>2.7.0</spring.boot.version>
+        <spring.cloud.version>2021.0.2</spring.cloud.version>
+        <version.jakarta.validation-api>3.0.0</version.jakarta.validation-api>
     </properties>
  
     <modules>
@@ -33,7 +34,7 @@
         <module>ical-svc</module>
         <module>whoami-api</module>
         <module>whoami-svc</module>
-        <module>web-app</module>
+<!--        <module>web-app</module>-->
         <module>faraday</module>
     </modules>
 
@@ -95,7 +96,16 @@
                 <artifactId>common-lib</artifactId>
                 <version>1.0.1</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>7.0.4.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${version.jakarta.validation-api}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
  
@@ -104,7 +114,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-            <version>1.18.8</version>
+            <version>1.18.24</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -197,6 +207,13 @@
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.24</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
@@ -205,7 +222,8 @@
     <repositories>
         <repository>
             <id>aliyun-repos</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <url>https://maven.aliyun.com/repository/public</url>
+<!--            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -220,7 +238,7 @@
         </repository>
     </repositories>
 
-    <pluginRepositories>
+    <!--<pluginRepositories>
         <pluginRepository>
             <id>aliyun-plugin</id>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
@@ -228,5 +246,5 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories>-->
 </project>

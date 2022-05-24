@@ -1,5 +1,7 @@
 package xyz.staffjoy.bot.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
 import io.sentry.SentryClient;
@@ -25,7 +27,6 @@ import xyz.staffjoy.mail.dto.EmailRequest;
 import xyz.staffjoy.sms.client.SmsClient;
 import xyz.staffjoy.sms.dto.SmsRequest;
 
-import javax.json.Json;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -59,6 +60,9 @@ public class HelperService {
 
     @Autowired
     private SentryClient sentryClient;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     static final String[] standardGreetings = {
             "Hi %s!",
@@ -217,7 +221,7 @@ public class HelperService {
 
 
     @Async(AppConfig.ASYNC_EXECUTOR_NAME)
-    void smsOnboardAsync(AccountDto account, CompanyDto companyDto) {
+    void smsOnboardAsync(AccountDto account, CompanyDto companyDto){
         URI icalURI = null;
         try {
             icalURI = new URI(envConfig.getScheme(), "ical." + envConfig.getExternalApex(), String.format("/%s.ics", account.getId()), null);
@@ -225,16 +229,28 @@ public class HelperService {
             throw new ServiceException("Fail to build URI", e);
         }
 
-        String templateParam1 = Json.createObjectBuilder()
-                .add("greet", HelperService.getGreet(HelperService.getFirstName(account.getName())))
-                .add("company_name", companyDto.getName())
-                .build()
-                .toString();
+        String templateParam1;
+        try {
+            templateParam1 = objectMapper.writeValueAsString(Map.of("greet", HelperService.getGreet(HelperService.getFirstName(account.getName())),
+                    "company_name", companyDto.getName()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
-        String templateParam3 = Json.createObjectBuilder()
-                .add("ical_url", icalURI.toString())
-                .build()
-                .toString();
+//        String templateParam1 = Json.createObjectBuilder()
+//                .add("greet", HelperService.getGreet(HelperService.getFirstName(account.getName())))
+//                .add("company_name", companyDto.getName())
+//                .build()
+//                .toString();
+
+
+
+        String templateParam3;
+        try {
+            templateParam3 = objectMapper.writeValueAsString(Map.of("ical_url", icalURI.toString()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         // TODO crate sms template on aliyun then update code
 //        String[] onboardingMessages = {

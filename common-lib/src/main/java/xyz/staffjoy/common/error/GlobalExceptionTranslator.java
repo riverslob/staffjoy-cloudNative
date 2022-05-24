@@ -2,6 +2,9 @@ package xyz.staffjoy.common.error;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Path;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -18,8 +21,9 @@ import xyz.staffjoy.common.api.BaseResponse;
 import xyz.staffjoy.common.api.ResultCode;
 import xyz.staffjoy.common.auth.PermissionDeniedException;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
+//import javax.validation.ConstraintViolation;
+//import javax.validation.ConstraintViolationException;
+//import javax.validation.Path;
 import java.util.Set;
 
 @RestControllerAdvice
@@ -79,7 +83,8 @@ public class GlobalExceptionTranslator {
         logger.warn("Constraint Violation", e);
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         ConstraintViolation<?> violation = violations.iterator().next();
-        String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
+        Path propertyPath = violation.getPropertyPath();
+        String path = ((PathImpl) propertyPath).getLeafNode().getName();
         String message = String.format("%s:%s", path, violation.getMessage());
         return BaseResponse
                 .builder()

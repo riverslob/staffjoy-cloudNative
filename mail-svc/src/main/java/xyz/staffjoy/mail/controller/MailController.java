@@ -2,6 +2,7 @@ package xyz.staffjoy.mail.controller;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,6 @@ import xyz.staffjoy.common.api.BaseResponse;
 import xyz.staffjoy.mail.dto.EmailRequest;
 import xyz.staffjoy.mail.service.MailSendService;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1")

@@ -2,6 +2,7 @@ package xyz.staffjoy.account.controller;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -18,9 +19,8 @@ import xyz.staffjoy.common.env.EnvConstant;
 import xyz.staffjoy.common.error.ServiceException;
 import xyz.staffjoy.common.validation.PhoneNumber;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/v1/account")

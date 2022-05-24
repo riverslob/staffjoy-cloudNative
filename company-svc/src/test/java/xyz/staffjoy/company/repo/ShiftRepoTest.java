@@ -1,3 +1,4 @@
+/*
 package xyz.staffjoy.company.repo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -114,11 +115,13 @@ public class ShiftRepoTest {
         assertThat(count).isEqualTo(1);
 
         // FIXME mysql specific, incompatible with h2
-        /*
+        */
+/*
         List<ShiftRepo.IScheduledPerWeek> scheduledPerWeek = shiftRepo.getScheduledPerweekList();
         assertThat(scheduledPerWeek.size()).isEqualTo(1);
         assertThat(scheduledPerWeek.get(0).getCount()).isEqualTo(1);
-        */
+        *//*
+
 
         Shift shiftToUpdate = Shift.builder().id(shift2.getId())
                 .teamId("T100002").userId("U100002").jobId("J100002")
@@ -147,3 +150,4 @@ public class ShiftRepoTest {
         shiftRepo.deleteAll();
     }
 }
+*/

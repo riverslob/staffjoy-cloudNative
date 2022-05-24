@@ -76,7 +76,6 @@ public class GlobalErrorController implements ErrorController {
         return "error";
     }
 
-    @Override
     public String getErrorPath() {
         return "/error";
     }
