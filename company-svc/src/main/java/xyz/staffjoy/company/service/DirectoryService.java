@@ -2,7 +2,10 @@ package xyz.staffjoy.company.service;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -23,7 +26,7 @@ import xyz.staffjoy.company.repo.DirectoryRepo;
 import xyz.staffjoy.company.service.helper.ServiceHelper;
 
 @Service
-public class DirectoryService {
+public class DirectoryService implements ApplicationContextAware {
 
     static final ILogger logger = SLoggerFactory.getLogger(DirectoryService.class);
 
@@ -42,8 +45,15 @@ public class DirectoryService {
     @Autowired
     private WorkerService workerService;
 
-    @Autowired
-    private AdminService adminService;
+//    @Autowired
+//    private AdminService adminService;
+
+    private ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 
     public DirectoryEntryDto createDirectory(NewDirectoryEntry req) {
         boolean companyExists = companyRepo.existsById(req.getCompanyId());
@@ -268,7 +278,7 @@ public class DirectoryService {
                     association.getTeams().add(teamDto);
                 }
 
-                DirectoryEntryDto admin = adminService.getAdmin(companyId, directoryEntryDto.getUserId());
+                DirectoryEntryDto admin = getAdminService().getAdmin(companyId, directoryEntryDto.getUserId());
                 if (admin != null) {
                     association.setAdmin(true);
                 } else {
@@ -280,6 +290,10 @@ public class DirectoryService {
         }
 
         return associationList;
+    }
+
+    private AdminService getAdminService() {
+        return applicationContext.getBean(AdminService.class);
     }
 
     private void copyAccountToDirectory(AccountDto a, DirectoryEntryDto d) {

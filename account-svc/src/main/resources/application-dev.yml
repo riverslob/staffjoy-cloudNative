@@ -16,3 +16,5 @@ management:
     web:
       exposure:
         include: "*"
+
+SENTRY_DSN: https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087

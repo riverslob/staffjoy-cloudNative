@@ -2,7 +2,11 @@ package xyz.staffjoy.company.service;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import xyz.staffjoy.common.api.ResultCode;
 import xyz.staffjoy.common.auditlog.LogEntry;
@@ -16,7 +20,7 @@ import xyz.staffjoy.company.service.helper.ServiceHelper;
 import java.util.List;
 
 @Service
-public class WorkerService {
+public class WorkerService implements ApplicationContextAware {
 
     static final ILogger logger = SLoggerFactory.getLogger(WorkerService.class);
 
@@ -26,11 +30,18 @@ public class WorkerService {
     @Autowired
     TeamService teamService;
 
-    @Autowired
-    DirectoryService directoryService;
+//    @Autowired
+//    DirectoryService directoryService;
 
     @Autowired
     ServiceHelper serviceHelper;
+
+    private ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 
     public WorkerEntries listWorkers(String companyId, String teamId) {
         // validate and will throw exception if not exist
@@ -39,12 +50,16 @@ public class WorkerService {
         List<Worker> workerList = workerRepo.findByTeamId(teamId);
 
         WorkerEntries workerEntries = WorkerEntries.builder().companyId(companyId).teamId(teamId).build();
-        for(Worker worker : workerList) {
-            DirectoryEntryDto directoryEntryDto = directoryService.getDirectoryEntry(companyId, worker.getUserId());
+        for (Worker worker : workerList) {
+            DirectoryEntryDto directoryEntryDto = getDirectoryService().getDirectoryEntry(companyId, worker.getUserId());
             workerEntries.getWorkers().add(directoryEntryDto);
         }
 
         return workerEntries;
+    }
+
+    private DirectoryService getDirectoryService() {
+        return applicationContext.getBean(DirectoryService.class);
     }
 
     public DirectoryEntryDto getWorker(String companyId, String teamId, String userId) {
@@ -56,7 +71,7 @@ public class WorkerService {
             throw new ServiceException(ResultCode.NOT_FOUND, "worker relationship not found");
         }
 
-        DirectoryEntryDto directoryEntryDto = directoryService.getDirectoryEntry(companyId, userId);
+        DirectoryEntryDto directoryEntryDto = getDirectoryService().getDirectoryEntry(companyId, userId);
 
         return directoryEntryDto;
     }
@@ -90,7 +105,7 @@ public class WorkerService {
         List<Worker> workerList = workerRepo.findByUserId(userId);
 
         WorkerOfList workerOfList = WorkerOfList.builder().userId(userId).build();
-        for(Worker worker : workerList) {
+        for (Worker worker : workerList) {
             TeamDto teamDto = teamService.getTeam(worker.getTeamId());
             workerOfList.getTeams().add(teamDto);
         }
@@ -102,7 +117,7 @@ public class WorkerService {
         // validate and will throw exception if not found
         teamService.getTeamWithCompanyIdValidation(workerDto.getCompanyId(), workerDto.getTeamId());
 
-        DirectoryEntryDto directoryEntryDto = directoryService.getDirectoryEntry(workerDto.getCompanyId(), workerDto.getUserId());
+        DirectoryEntryDto directoryEntryDto = getDirectoryService().getDirectoryEntry(workerDto.getCompanyId(), workerDto.getUserId());
 
         Worker worker = workerRepo.findByTeamIdAndUserId(workerDto.getTeamId(), workerDto.getUserId());
         if (worker != null) {
