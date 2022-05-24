@@ -34,7 +34,7 @@ public class GlobalErrorController implements ErrorController {
     @Autowired
     EnvConfig envConfig;
 
-    @Override
+//    @Override
     public String getErrorPath() {
         return "/error";
     }

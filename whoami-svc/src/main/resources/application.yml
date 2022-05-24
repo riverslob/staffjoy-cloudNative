@@ -8,9 +8,9 @@ spring:
 
 staffjoy:
   common:
-    sentry-dsn: ${SENTRY_DSN}
+    sentry-dsn: ${SENTRY_DSN:https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087}
     deploy-env: ${DEPLOY:V2}
   company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service:8080}
   account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-service:8080}
-  intercom-app-id: ${INTERCOM_APP_ID}
-  intercom-signing-secret: ${INTERCOM_SIGNING_SECRET}
+  intercom-app-id: ${INTERCOM_APP_ID:key}
+  intercom-signing-secret: ${INTERCOM_SIGNING_SECRET:value}

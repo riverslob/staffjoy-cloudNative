@@ -59,7 +59,7 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
+                <!--<plugin>
                     <groupId>com.github.warmuuh</groupId>
                     <artifactId>libsass-maven-plugin</artifactId>
                     <version>0.2.10-libsass_3.5.3</version>
@@ -74,11 +74,11 @@
                     <configuration>
                         <inputPath>${basedir}/src/main/sass/</inputPath>
                         <outputPath>${basedir}/src/main/resources/static/assets/css</outputPath>
-                        <!--outputPath>${project.build.directory}/classes/static</outputPath-->
-                        <!--outputStyle>compressed</outputStyle-->
+                        &lt;!&ndash;outputPath>${project.build.directory}/classes/static</outputPath&ndash;&gt;
+                        &lt;!&ndash;outputStyle>compressed</outputStyle&ndash;&gt;
                         <generateSourceMap>false</generateSourceMap>
                     </configuration>
-                </plugin>
+                </plugin>-->
             </plugins>
         </pluginManagement>
         <plugins>

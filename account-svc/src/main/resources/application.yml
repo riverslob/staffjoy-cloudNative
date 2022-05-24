@@ -9,6 +9,12 @@ spring:
     url: ${ACCOUNT_DATASOURCE_URL}
     username: ${ACCOUNT_DATASOURCE_USERNAME}
     password: ${ACCOUNT_DATASOURCE_PASSWORD}
+    hikari:
+      minimumIdle: 2
+      maximumPoolSize: 10
+      idleTimeout: 120000
+      connectionTimeout: 300000
+      leakDetectionThreshold: 300000
     tomcat:
       test-while-idle: true
       validation-query: SELECT 1
@@ -18,9 +24,9 @@ spring:
 
 staffjoy:
   common:
-    sentry-dsn: ${SENTRY_DSN}
+    sentry-dsn: ${SENTRY_DSN:https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087}
     deploy-env: ${DEPLOY:V2}
-  signing-secret: ${SIGNING_SECRET}
+  signing-secret: ${SIGNING_SECRET:secret}
   email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service:8080}
   company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service:8080}
   bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service:8080}
