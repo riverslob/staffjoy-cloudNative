@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  namespace: dev
+  name: ingress-account-svc
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /v1/account
+            backend:
+              serviceName: svc-account-svc
+              servicePort: 8071
