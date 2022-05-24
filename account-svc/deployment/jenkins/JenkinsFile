@@ -39,7 +39,7 @@ pipeline {
             steps {
                 echo "********* checkout start Branch: $BRANCH, Env: $DEPLOY_ENV ********"
                 echo pwd()
-                git branch:"$BRANCH",credentialsId:'aaa16faa-d48c-49a3-ad3d-9497ce08fee0',url:'git@github.com:yanzxu/book-store.git'
+                git branch:"$BRANCH",credentialsId:'954a8608-a1a9-4986-b19f-8a8669912212',url:'git@github.com:riverslob/staffjoy-cloudNative.git'
                 echo '********* checkout end ********'
             }
         }
