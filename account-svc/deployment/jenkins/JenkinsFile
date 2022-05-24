@@ -47,7 +47,7 @@ pipeline {
         stage('build jar') {
             steps {
                 echo '********* buildJar start ********'
-                sh 'mvn compile -pl :account-svc -am'
+                sh 'mvn -pl :account-svc compile'
                 echo '********* buildJar start ********'
             }
         }
