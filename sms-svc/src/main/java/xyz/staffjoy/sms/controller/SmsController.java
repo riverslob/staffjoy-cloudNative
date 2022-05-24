@@ -2,7 +2,6 @@ package xyz.staffjoy.sms.controller;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +13,8 @@ import xyz.staffjoy.common.auth.Authorize;
 import xyz.staffjoy.sms.props.AppProps;
 import xyz.staffjoy.sms.dto.SmsRequest;
 import xyz.staffjoy.sms.service.SmsSendService;
+
+import javax.validation.Valid;
 
 
 @RestController

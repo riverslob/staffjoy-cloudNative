@@ -2,9 +2,9 @@ package xyz.staffjoy.common.error;
 
 import com.github.structlog4j.ILogger;
 import com.github.structlog4j.SLoggerFactory;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Path;
+//import jakarta.validation.ConstraintViolation;
+//import jakarta.validation.ConstraintViolationException;
+//import jakarta.validation.Path;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -24,6 +24,9 @@ import xyz.staffjoy.common.auth.PermissionDeniedException;
 //import javax.validation.ConstraintViolation;
 //import javax.validation.ConstraintViolationException;
 //import javax.validation.Path;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Path;
 import java.util.Set;
 
 @RestControllerAdvice

@@ -1,16 +1,16 @@
 package xyz.staffjoy.company.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import xyz.staffjoy.common.validation.PhoneNumber;
 
-//import jakarta.validation.constraints.Email;
-//import jakarta.validation.constraints.NotBlank;
-//import jakarta.validation.constraints.NotEmpty;
+//import javax.validation.constraints.Email;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotEmpty;
 
 // directory
 @Data

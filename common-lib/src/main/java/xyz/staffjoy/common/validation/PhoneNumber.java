@@ -1,8 +1,9 @@
 package xyz.staffjoy.common.validation;
 
 //import javax.validation.Constraint;
-import jakarta.validation.Constraint;
+//import jakarta.validation.Constraint;
 
+import javax.validation.Constraint;
 import java.lang.annotation.*;
 
 @Documented

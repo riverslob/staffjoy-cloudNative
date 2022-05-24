@@ -3,8 +3,11 @@ package xyz.staffjoy.common.validation;
 //import javax.validation.ConstraintValidator;
 //import javax.validation.ConstraintValidatorContext;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+//import jakarta.validation.ConstraintValidator;
+//import jakarta.validation.ConstraintValidatorContext;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
 

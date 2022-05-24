@@ -1,6 +1,6 @@
 package xyz.staffjoy.company.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,7 @@ import xyz.staffjoy.common.validation.Group1;
 import xyz.staffjoy.common.validation.Group2;
 import xyz.staffjoy.common.validation.Timezone;
 
-//import jakarta.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor

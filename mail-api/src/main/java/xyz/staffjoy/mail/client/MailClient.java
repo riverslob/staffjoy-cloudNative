@@ -1,12 +1,13 @@
 package xyz.staffjoy.mail.client;
 
-import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import xyz.staffjoy.common.api.BaseResponse;
 import xyz.staffjoy.mail.MailConstant;
 import xyz.staffjoy.mail.dto.EmailRequest;
+
+import javax.validation.Valid;
 
 //import javax.validation.Valid;
 
