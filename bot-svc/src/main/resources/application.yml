@@ -1,4 +1,6 @@
 # application.yml
+server:
+  port: 8080
 
 spring:
   profiles:
@@ -10,8 +12,8 @@ staffjoy:
   common:
     sentry-dsn: ${SENTRY_DSN:https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087}
     deploy-env: ${DEPLOY:V2}
-  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service:8080}
-  sms-service-endpoint: ${SMS_SERVICE_ENDPOINT:http://sms-service:8080}
-  company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service:8080}
-  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-service:8080}
+  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service}
+  sms-service-endpoint: ${SMS_SERVICE_ENDPOINT:http://sms-service}
+  company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service}
+  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-service}
   force-email-preference: ${FORCE_EMAIL_PREFERENCE:true}

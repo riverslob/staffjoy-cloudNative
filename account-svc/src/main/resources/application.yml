@@ -1,4 +1,6 @@
 # application.yml
+server:
+  port: 8080
 
 spring:
   profiles:
@@ -19,6 +21,8 @@ spring:
       test-while-idle: true
       validation-query: SELECT 1
   jpa:
+    jpa:
+      show-sql: true
     hibernate:
       ddl-auto: validate
 
@@ -27,7 +31,7 @@ staffjoy:
     sentry-dsn: ${SENTRY_DSN:https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087}
     deploy-env: ${DEPLOY:V2}
   signing-secret: ${SIGNING_SECRET:secret}
-  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service:8080}
-  company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service:8080}
-  bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service:8080}
-  intercom-access-token: ${INTERCOM_ACCESS_TOKEN}
+  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service}
+  company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service}
+  bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service}
+  intercom-access-token: ${INTERCOM_ACCESS_TOKEN:token}

@@ -1,20 +1,25 @@
 # https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-apiversion-definition-guide.html
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-spa-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: app-spa
+      app.kubernetes.io/instance: app-spa
   template:
     metadata:
       labels:
-        app: app-svc
+        app.kubernetes.io/name: app-spa
+        app.kubernetes.io/instance: app-spa
         env: test
     spec:
       containers:
         - name: app-spa
           image: boboweike/app-spa
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
               containerPort: 80
@@ -25,8 +30,8 @@ metadata:
   name: app-service
 spec:
   selector:
-    app: app-svc
-    env: test
+    app.kubernetes.io/name: app-spa
+    app.kubernetes.io/instance: app-spa
   ports:
     - protocol: TCP
       port: 80

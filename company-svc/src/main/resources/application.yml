@@ -1,4 +1,6 @@
 # application.yml
+server:
+  port: 8080
 
 spring:
   profiles:
@@ -27,6 +29,6 @@ staffjoy:
     sentry-dsn: ${SENTRY_DSN:https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087}
     deploy-env: ${DEPLOY:V2}
   signing-secret: ${SIGNING_SECRET:secret}
-  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service:8080}
-  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-servie:8080}
-  bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service:8080}
+  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service}
+  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-servie}
+  bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service}

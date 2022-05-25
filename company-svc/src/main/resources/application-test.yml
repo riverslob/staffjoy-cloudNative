@@ -1,6 +1,6 @@
-spring:
-  jpa:
-    show-sql: true
+COMPANY_DATASOURCE_URL: jdbc:mysql://yzxu.asuscomm.com:3307/staffjoy_company?useUnicode=true&characterEncoding=utf-8
+COMPANY_DATASOURCE_USERNAME: root
+COMPANY_DATASOURCE_PASSWORD: root
 
 management:
   endpoints:

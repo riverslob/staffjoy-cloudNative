@@ -1,26 +1,31 @@
 # https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-apiversion-definition-guide.html
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: www-web-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: www-svc
+      app.kubernetes.io/instance: www-svc
   template:
     metadata:
       labels:
-        app: www-svc
+        app.kubernetes.io/name: www-svc
+        app.kubernetes.io/instance: www-svc
         env: test
     spec:
       containers:
         - name: www-svc
-          image: boboweike/www-svc
-          imagePullPolicy: Never
+          image: yanzxu/www-svc:1
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
-              containerPort: 80
-          envFrom:
-            - configMapRef:
-                name: common-config
+              containerPort: 8080
+#          envFrom:
+#            - configMapRef:
+#                name: common-config
 ---
 apiVersion: v1
 kind: Service
@@ -28,9 +33,9 @@ metadata:
   name: www-service
 spec:
   selector:
-    app: www-svc
-    env: test
+    app.kubernetes.io/name: www-svc
+    app.kubernetes.io/instance: www-svc
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8080
