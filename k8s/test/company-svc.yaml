@@ -18,14 +18,14 @@ spec:
     spec:
       containers:
         - name: company-svc
-          image: yanzxu/company-srv:1
+          image: yanzxu/company-svc:4
           imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
               containerPort: 8080
-#          envFrom:
-#            - configMapRef:
-#                name: common-config
+          envFrom:
+            - configMapRef:
+                name: common-config
 ---
 apiVersion: v1
 kind: Service

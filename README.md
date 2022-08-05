@@ -117,6 +117,76 @@ Staffjoy 应用的业务功能相对简单，简单讲就是帮助小企业管�
 
 ![scheduling page](doc/images/scheduling_page.jpg)
 
+## 运行相关
+
+### start sequences:
+mail/bot ->  account -> company -> www(app\myaccount\www web) -> whoami -> faraday
+
+mvn clean package -DskipTests
+
+### docker run
+
+nerdctl build -t yanzxu/myaccount-spa:1 . -f myaccount/Dockerfile
+
+nerdctl build -t yanzxu/account-srv:8 . -f account-svc/Dockerfile
+
+nerdctl run -d -p 9001:80 boboweike/app-spa
+
+nerdctl run -d -p 9000:80 boboweike/myaccount-spa
+
+nerdctl run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root mysql
+
+nerdctl exec -it aeec8d82658b bash
+
+kubectl exec -it  mysql-57b9544647-4tp5n -- mysql -h mysql -proot
+
+kubectl port-forward mysql-57b9544647-4tp5n 8888:8080
+
+
+### docker build & k8s deploy
+
+#### mysql
+mysql config
+
+#### config map
+kubectl apply -f k8s/test/config/config.yaml
+
+#### mail service
+kubectl apply -f k8s/test/email-svc.yaml
+
+#### account-svc
+nerdctl -n k8s.io build -t yanzxu/account-svc:1 .
+
+kubectl apply -f k8s/test/account-svc.yaml
+
+#### company-svc
+nerdctl -n k8s.io build -t yanzxu/company-svc:1 .
+
+kubectl apply -f k8s/test/company-svc.yaml
+
+#### app(MyCompany) spa
+kubectl apply -f k8s/test/app-spa.yaml
+
+#### myaccount spa
+kubectl apply -f k8s/test/myaccount-spa.yaml
+
+#### www web
+nerdctl -n k8s.io build -t yanzxu/www-svc:2 .
+
+kubectl apply -f k8s/test/www-web.yaml
+
+#### who am i
+nerdctl -n k8s.io build -t yanzxu/whoami-svc:1 .
+
+kubectl apply -f k8s/test/whoami-svc.yaml
+
+#### gateway
+nerdctl -n k8s.io build -t yanzxu/faraday-svc:1 .
+
+kubectl apply -f k8s/test/faraday-svc.yaml
+
+sudo kubectl port-forward faraday-svc-deployment-7bc7cfb44d-76ktm 80:8080
+
 ## 其它可供参考微服务案例项目
 
 - [eShopOnContainers](https://github.com/dotnet-architecture/eShopOnContainers) 微软支持

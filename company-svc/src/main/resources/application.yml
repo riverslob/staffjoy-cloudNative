@@ -30,5 +30,5 @@ staffjoy:
     deploy-env: ${DEPLOY:V2}
   signing-secret: ${SIGNING_SECRET:secret}
   email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service}
-  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-servie}
+  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-service}
   bot-service-endpoint: ${BOT_SERVICE_ENDPOINT:http://bot-service}

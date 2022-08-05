@@ -18,14 +18,14 @@ spec:
     spec:
       containers:
         - name: whoami-svc
-          image: yanzxu/whoami-srv:1
+          image: yanzxu/whoami-svc:1
           imagePullPolicy: IfNotPresent
           ports:
             - name: http-port
               containerPort: 8080
-#          envFrom:
-#            - configMapRef:
-#                name: common-config
+          envFrom:
+            - configMapRef:
+                name: common-config
 ---
 apiVersion: v1
 kind: Service

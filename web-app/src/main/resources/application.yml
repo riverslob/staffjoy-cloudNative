@@ -16,8 +16,8 @@ staffjoy:
     sentry-dsn: ${SENTRY_DSN:https://80bbf4ae778b525f9fe72e2813cd5246@sentry.io/1271087}
     deploy-env: ${DEPLOY:V2}
   signing-secret: ${SIGNING_SECRET:secret}
-  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service:8080}
-  company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service:8080}
-  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-service:8080}
+  email-service-endpoint: ${EMAIL_SERVICE_ENDPOINT:http://email-service}
+  company-service-endpoint: ${COMPANY_SERVICE_ENDPOINT:http://company-service}
+  account-service-endpoint: ${ACCOUNT_SERVICE_ENDPOINT:http://account-service}
   recaptcha-public: ${RECAPTCHA_PUBLIC}
   recaptcha-private: ${RECAPTCHA_PRIVATE}

@@ -21,8 +21,7 @@ spring:
       test-while-idle: true
       validation-query: SELECT 1
   jpa:
-    jpa:
-      show-sql: true
+    show-sql: true
     hibernate:
       ddl-auto: validate
 

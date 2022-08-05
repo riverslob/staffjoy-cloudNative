@@ -28,7 +28,7 @@ staffjoy:
   company-service-endpoint: http://localhost:8080 # for testing only
   signing-secret: ${SIGNING_SECRET:TEST_SIGNING_SECRET}
   email-service-endpoint: http://email-service
-  account-service-endpoint: http://account-servie
+  account-service-endpoint: http://account-service
   bot-service-endpoint: http://bot-service
 
 

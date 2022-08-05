@@ -1,6 +1,6 @@
-ACCOUNT_DATASOURCE_URL: jdbc:mysql://yzxu.asuscomm.com:3307/staffjoy_account?useUnicode=true&characterEncoding=utf-8
-ACCOUNT_DATASOURCE_USERNAME: root
-ACCOUNT_DATASOURCE_PASSWORD: root
+spring:
+  jpa:
+    show-sql: true
 
 management:
   endpoints:
